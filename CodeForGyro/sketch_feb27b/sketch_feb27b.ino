@@ -17,7 +17,6 @@
 
 #include <Wire.h> 
 #include <Adafruit_L3GD20.h>
-//Modifying code
 
 // Comment this next line to use SPI
 //#define USE_I2C
@@ -33,6 +32,10 @@
   #define GYRO_CLK 7 // labeled SCL
   Adafruit_L3GD20 gyro(GYRO_CS, GYRO_DO, GYRO_DI, GYRO_CLK);
 #endif
+
+int x;
+int y;
+int z;
 
 void setup() 
 {
@@ -51,8 +54,8 @@ void setup()
 void loop() 
 {
   gyro.read();
-  Serial.print("X: "); Serial.print((int)gyro.data.x);   Serial.print(" ");
-  Serial.print("Y: "); Serial.print((int)gyro.data.y);   Serial.print(" ");
-  Serial.print("Z: "); Serial.println((int)gyro.data.z); Serial.print(" ");
+  x=((int)gyro.data.x);  
+  y=((int)gyro.data.y);   
+  z=((int)gyro.data.z); 
   delay(100);
 }
