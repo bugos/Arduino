@@ -17,6 +17,7 @@
 
 #include <Wire.h> 
 #include <Adafruit_L3GD20.h>
+//Modifying code
 
 // Comment this next line to use SPI
 //#define USE_I2C
