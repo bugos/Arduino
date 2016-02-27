@@ -46,6 +46,13 @@ int tol[3]={50,50,50};
 int sumMo[3]={4,6,10};
 //How many raw data sets we have
 int n=1;
+//If flagMove==0 ->regular mode
+//If flagMove==1 ->x axis transient
+//If flagMove==2 ->y axis transient
+//If flagMove==3 ->z axis transient
+int flagMove=0;
+//The maximum difference is used to define the flag number 
+int MaxDiffer[3]={0,0,0};
 
 void setup() 
 {
@@ -75,20 +82,47 @@ void loop()
       n++;
       sumMo[i]+=value[i];
       Mo[i]=sumMo[i]/n;
+      if flagMove==i+1
+      {
+        int temp
+        
+        if MaxDiffer[i]<0
+          temp=1;
+        else
+          temp=0;
+
+        mm++;
+        moves[nm]=flagMove*2-tmp;
+        flagMove=0;
+      }
+
+      
     }
     //Read move mode 
     else
     {
-        
+      if flagMove==0 || flagMove==4
+      {
+        MaxDiffer[i]=value[i]-Mo[i];
+        flagMove=4;
+      }
     }
   }
+  if (flagmove==4)
+  {
+    maxim=MaxDiffer[0];
+    point=0;
+    for(int i=1;i<3;i++)
+    {
+      if(MaxDiffer[i]>maxim)
+      {
+        maxim=MaxDiffer[i];
+        point=i;
+      }
+    }
+    flagMove=point+1;
+  }
   delay(100);
-
-  /*gyro.read();
-  Serial.print("X: "); Serial.print((int)gyro.data.x);   Serial.print(" ");
-  Serial.print("Y: "); Serial.print((int)gyro.data.y);   Serial.print(" ");
-  Serial.print("Z: "); Serial.println((int)gyro.data.z); Serial.print(" ");
-  delay(100);*/
 }
 
 
