@@ -33,18 +33,23 @@
   Adafruit_L3GD20 gyro(GYRO_CS, GYRO_DO, GYRO_DI, GYRO_CLK);
 #endif
 
-<<<<<<< HEAD
-int x;
-int y;
-int z;
-=======
-int MoX=4;int MoY=6;int MoZ=10;
->>>>>>> origin/master
+//Password and counter of the position in the password array
+int moves[120];
+int mm=0;
+//Raw data values (x.y.z)
+int value[3];
+//Predefined avarages for each axis
+int Mo[3]={4,6,10);
+//Tolerance per axis
+int tol[3]={50,50,50};
+//Sum of predefined avarage+raw data values
+int sumMo[3]={4,6,10};
+//How many raw data sets we have
+int n=1;
 
 void setup() 
 {
   Serial.begin(9600);
-  
   // Try to initialise and warn if we couldn't detect the chip
    if (!gyro.begin(gyro.L3DS20_RANGE_250DPS))
   //if (!gyro.begin(gyro.L3DS20_RANGE_500DPS))
@@ -53,27 +58,37 @@ void setup()
     Serial.println("Oops ... unable to initialize the L3GD20. Check your wiring!");
     while (1);
   }
-
-  
 }
-
-
 
 void loop() 
 {
-<<<<<<< HEAD
   gyro.read();
-  x=((int)gyro.data.x);  
-  y=((int)gyro.data.y);   
-  z=((int)gyro.data.z); 
+  value[0]=((int)gyro.data.x);  
+  value[1]=((int)gyro.data.y);   
+  value[2]=((int)gyro.data.z); 
+  //Deciding for each axis if we are in regular mode or in move read mode
+  for(int i=0;i<3;i++)
+  {
+    //Regular mode  
+    if(abs(value[i]-Mo[i]))<=tol[i])
+    {
+      n++;
+      sumMo[i]+=value[i];
+      Mo[i]=sumMo[i]/n;
+    }
+    //Read move mode 
+    else
+    {
+        
+    }
+  }
   delay(100);
-=======
+
   /*gyro.read();
   Serial.print("X: "); Serial.print((int)gyro.data.x);   Serial.print(" ");
   Serial.print("Y: "); Serial.print((int)gyro.data.y);   Serial.print(" ");
   Serial.print("Z: "); Serial.println((int)gyro.data.z); Serial.print(" ");
   delay(100);*/
->>>>>>> origin/master
 }
 
 
