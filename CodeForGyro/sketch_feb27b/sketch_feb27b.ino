@@ -33,9 +33,13 @@
   Adafruit_L3GD20 gyro(GYRO_CS, GYRO_DO, GYRO_DI, GYRO_CLK);
 #endif
 
+<<<<<<< HEAD
 int x;
 int y;
 int z;
+=======
+int MoX=4;int MoY=6;int MoZ=10;
+>>>>>>> origin/master
 
 void setup() 
 {
@@ -49,13 +53,41 @@ void setup()
     Serial.println("Oops ... unable to initialize the L3GD20. Check your wiring!");
     while (1);
   }
+
+  
 }
+
+
 
 void loop() 
 {
+<<<<<<< HEAD
   gyro.read();
   x=((int)gyro.data.x);  
   y=((int)gyro.data.y);   
   z=((int)gyro.data.z); 
   delay(100);
+=======
+  /*gyro.read();
+  Serial.print("X: "); Serial.print((int)gyro.data.x);   Serial.print(" ");
+  Serial.print("Y: "); Serial.print((int)gyro.data.y);   Serial.print(" ");
+  Serial.print("Z: "); Serial.println((int)gyro.data.z); Serial.print(" ");
+  delay(100);*/
+>>>>>>> origin/master
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
