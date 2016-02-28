@@ -33,7 +33,6 @@
   Adafruit_L3GD20 gyro(GYRO_CS, GYRO_DO, GYRO_DI, GYRO_CLK);
 #endif
 
-//Predefined avarages for each axis
 int x;int y;int z;
 
 int MoX=4;int MoY=6;int MoZ=10;
