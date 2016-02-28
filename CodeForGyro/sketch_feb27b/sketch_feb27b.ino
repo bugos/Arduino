@@ -33,9 +33,32 @@
   Adafruit_L3GD20 gyro(GYRO_CS, GYRO_DO, GYRO_DI, GYRO_CLK);
 #endif
 
+<<<<<<< HEAD
 int x;int y;int z;
 
 int MoX=4;int MoY=6;int MoZ=10;
+=======
+//Password and counter of the position in the password array
+int moves[120];
+int mm=0;
+//Raw data values (x.y.z)
+int value[3];
+//Predefined avarages for each axis
+int Mo[3]={4,6,10);
+//Tolerance per axis
+int tol[3]={50,50,50};
+//Sum of predefined avarage+raw data values
+int sumMo[3]={4,6,10};
+//How many raw data sets we have
+int n=1;
+//If flagMove==0 ->regular mode
+//If flagMove==1 ->x axis transient
+//If flagMove==2 ->y axis transient
+//If flagMove==3 ->z axis transient
+int flagMove=0;
+//The maximum difference is used to define the flag number 
+int MaxDiffer[3]={0,0,0};
+>>>>>>> origin/master
 
 void setup() 
 {
@@ -59,6 +82,7 @@ void loop()
 {
   
   gyro.read();
+<<<<<<< HEAD
   x=((int)gyro.data.x);  
   y=((int)gyro.data.y);   
   z=((int)gyro.data.z); 
@@ -68,6 +92,60 @@ void loop()
 
 
   
+=======
+  value[0]=((int)gyro.data.x);  
+  value[1]=((int)gyro.data.y);   
+  value[2]=((int)gyro.data.z); 
+  //Deciding for each axis if we are in regular mode or in move read mode
+  for(int i=0;i<3;i++)
+  {
+    //Regular mode  
+    if(abs(value[i]-Mo[i]))<=tol[i])
+    {
+      n++;
+      sumMo[i]+=value[i];
+      Mo[i]=sumMo[i]/n;
+      if flagMove==i+1
+      {
+        int temp
+        
+        if MaxDiffer[i]<0
+          temp=1;
+        else
+          temp=0;
+
+        mm++;
+        moves[nm]=flagMove*2-tmp;
+        flagMove=0;
+      }
+
+      
+    }
+    //Read move mode 
+    else
+    {
+      if flagMove==0 || flagMove==4
+      {
+        MaxDiffer[i]=value[i]-Mo[i];
+        flagMove=4;
+      }
+    }
+  }
+  if (flagmove==4)
+  {
+    maxim=MaxDiffer[0];
+    point=0;
+    for(int i=1;i<3;i++)
+    {
+      if(MaxDiffer[i]>maxim)
+      {
+        maxim=MaxDiffer[i];
+        point=i;
+      }
+    }
+    flagMove=point+1;
+  }
+>>>>>>> origin/master
   delay(100);
 }
 
