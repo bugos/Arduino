@@ -106,13 +106,15 @@ void loop()
       break;
     }
   }
-  Serial.println(flagMove);
+  
   if (flagMove == 4)
   {
     
     for (int i = 0; i < 3; i++)
+    {
         MaxDiffer[i] = value[i] - Mo[i];
-    
+        
+    }
     int maxim = MaxDiffer[0];
     int point = 0;
     for (int i = 1; i < 3; i++)
@@ -124,6 +126,7 @@ void loop()
       }
     }
     flagMove = point + 1;
+    Serial.println(flagMove);
   }
   delay(120); //Digmatolipsia ton timon
 }
