@@ -37,11 +37,11 @@ int x; int y; int z;
 int MoX = 4; int MoY = 6; int MoZ = 10;
 //Password and counter of the position in the password array
 int moves[120];
-int mm = 0;
+int nm = 0;
 //Raw data values (x.y.z)
 int value[3];
 //Predefined avarages for each axis
-int Mo[3] = {4, 6, 10);
+int Mo[3] = {4, 6, 10};
 //Tolerance per axis
 int tol[3] = {50, 50, 50};
 //Sum of predefined avarage+raw data values
@@ -71,33 +71,37 @@ void setup()
 
 void loop()
 {
+  gyro.read();
   value[0] = ((int)gyro.data.x);
   value[1] = ((int)gyro.data.y);
   value[2] = ((int)gyro.data.z);
   //Deciding for each axis if we are in regular mode or in move read mode
-  Serial.println(
+  Serial.println(value[0]);
   for (int i = 0; i < 3; i++)
   {
+    
     //Regular mode
-    if (abs(value[i] - Mo[i])) <= tol[i])
+    if ((abs(value[i] - Mo[i])) <= tol[i])
     {
       n++;
       sumMo[i] += value[i];
       Mo[i] = sumMo[i] / n;
-      if flagMove == i + 1 // gia na stamatisi kai na grapsi tin kinisi 
+      if (flagMove == i + 1) // gia na stamatisi kai na grapsi tin kinisi 
       {
-        int temp
-        if MaxDiffer[i] < 0
+        int temp;
+        if (MaxDiffer[i] < 0)
           temp = 1;
         else
           temp = 0;
-        mm++;
+          
+        nm++;
         moves[nm] = flagMove * 2 - temp;
         flagMove = 0;
       }
     }
     else//Read move mode
     {
+      //Serial.println(i);
       flagMove=4;
       break;
     }
@@ -106,12 +110,10 @@ void loop()
   {
     
     for (int i = 0; i < 3; i++)
-    {
         MaxDiffer[i] = value[i] - Mo[i];
-    }
     
-    maxim = MaxDiffer[0];
-    point = 0;
+    int maxim = MaxDiffer[0];
+    int point = 0;
     for (int i = 1; i < 3; i++)
     {
       if (MaxDiffer[i] > maxim)
