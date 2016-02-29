@@ -79,7 +79,7 @@ void loop()
   
   for (int i = 0; i < 3; i++)
   {
-    Serial.println((abs(value[i] - Mo[i])));
+    
     //Regular mode
     if ((abs(value[i] - Mo[i])) <= tol[i])
     {
@@ -106,6 +106,7 @@ void loop()
       break;
     }
   }
+  Serial.println(flagMove);
   if (flagMove == 4)
   {
     
