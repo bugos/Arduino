@@ -31,11 +31,11 @@ void loop()
   } 
   if(readState==HIGH)
   {
+    readFlag=1;
+    digitalWrite(standbyLED,LOW);
+    digitalWrite(readLED,HIGH);
     do
     {
-      readFlag=1;
-      digitalWrite(standbyLED,LOW);
-      digitalWrite(readLED,HIGH);
       readState=digitalRead(readPin);
     }while(readFlag&&(readState==LOW);
     readFlag=0;
@@ -48,11 +48,11 @@ void loop()
   }
   if(writeState=HIGH)
   {
+    writeFlag=1;
+    digitalWrite(standbyLED,LOW);
+    digitalWrite(writeLED,HIGH);
     do
     {
-      writeFlag=1;
-      digitalWrite(standbyLED,LOW);
-      digitalWrite(writeLED,HIGH);
       writeState=digitalRead(writePin);
     }while(writeFlag&&(writeState=LOW);
     writeFlag=0;
