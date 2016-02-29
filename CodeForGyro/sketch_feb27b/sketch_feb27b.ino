@@ -43,7 +43,7 @@ int value[3];
 //Predefined avarages for each axis
 int Mo[3] = {4, 6, 10};
 //Tolerance per axis
-int tol[3] = {50, 50, 50};
+int tol[3] = {110, 110, 110};
 //Sum of predefined avarage+raw data values
 int sumMo[3] = {4, 6, 10};
 //How many raw data sets we have
@@ -76,74 +76,54 @@ void loop()
   value[1] = ((int)gyro.data.y);
   value[2] = ((int)gyro.data.z);
   //Deciding for each axis if we are in regular mode or in move read mode
-  
+
   for (int i = 0; i < 3; i++)
   {
-<<<<<<< HEAD
-    
-=======
-    Serial.println((abs(value[i] - Mo[i])));
->>>>>>> origin/master
     //Regular mode
     if ((abs(value[i] - Mo[i])) <= tol[i])
     {
       n++;
       sumMo[i] += value[i];
       Mo[i] = sumMo[i] / n;
-      if (flagMove == i + 1) // gia na stamatisi kai na grapsi tin kinisi 
+      if (flagMove == i + 1) // gia na stamatisi kai na grapsi tin kinisi
       {
         int temp;
         if (MaxDiffer[i] < 0)
           temp = 1;
         else
           temp = 0;
-          
+
         nm++;
         moves[nm] = flagMove * 2 - temp;
+        Serial.println(moves[nm]);
         flagMove = 0;
       }
     }
     else//Read move mode
     {
-      //Serial.println(i);
-      flagMove=4;
+      flagMove = 4;
       break;
     }
   }
-  
+
   if (flagMove == 4)
   {
-    
+
     for (int i = 0; i < 3; i++)
     {
-<<<<<<< HEAD
-        MaxDiffer[i] = value[i] - Mo[i];
-        
+      MaxDiffer[i] = value[i] - Mo[i];
     }
-    int maxim = MaxDiffer[0];
+    int maxim = abs(MaxDiffer[0]);
     int point = 0;
     for (int i = 1; i < 3; i++)
     {
-      if (MaxDiffer[i] > maxim)
+      if (abs(MaxDiffer[i]) > maxim)
       {
-        maxim = MaxDiffer[i];
+        maxim = abs(MaxDiffer[i]);
         point = i;
-=======
-      MaxDiffer[i] = value[i] - Mo[i];
-      int maxim = abs(MaxDiffer[0]);
-      int point = 0;
-      for (int i = 1; i < 3; i++)
-      {
-        if (abs(MaxDiffer[i]) > maxim)
-        {
-          maxim = abs(MaxDiffer[i]);
-          point = i;
-        }
->>>>>>> origin/master
       }
     }
     flagMove = point + 1;
-    Serial.println(flagMove);
   }
   delay(120); //Digmatolipsia ton timon
 }
