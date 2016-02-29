@@ -76,9 +76,13 @@ void loop()
   value[1] = ((int)gyro.data.y);
   value[2] = ((int)gyro.data.z);
   //Deciding for each axis if we are in regular mode or in move read mode
-  Serial.println(value[0]);
+  
   for (int i = 0; i < 3; i++)
   {
+<<<<<<< HEAD
+=======
+    Serial.println((abs(value[i] - Mo[i])));
+>>>>>>> origin/master
     //Regular mode
     if ((abs(value[i] - Mo[i])) <= tol[i])
     {
