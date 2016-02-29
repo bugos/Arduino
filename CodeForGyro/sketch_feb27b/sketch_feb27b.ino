@@ -79,7 +79,11 @@ void loop()
   
   for (int i = 0; i < 3; i++)
   {
+<<<<<<< HEAD
     
+=======
+    Serial.println((abs(value[i] - Mo[i])));
+>>>>>>> origin/master
     //Regular mode
     if ((abs(value[i] - Mo[i])) <= tol[i])
     {
@@ -112,6 +116,7 @@ void loop()
     
     for (int i = 0; i < 3; i++)
     {
+<<<<<<< HEAD
         MaxDiffer[i] = value[i] - Mo[i];
         
     }
@@ -123,6 +128,18 @@ void loop()
       {
         maxim = MaxDiffer[i];
         point = i;
+=======
+      MaxDiffer[i] = value[i] - Mo[i];
+      int maxim = abs(MaxDiffer[0]);
+      int point = 0;
+      for (int i = 1; i < 3; i++)
+      {
+        if (abs(MaxDiffer[i]) > maxim)
+        {
+          maxim = abs(MaxDiffer[i]);
+          point = i;
+        }
+>>>>>>> origin/master
       }
     }
     flagMove = point + 1;
