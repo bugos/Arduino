@@ -1,29 +1,17 @@
-<!DOCTYPE html>
-<html>
-<body>
-
 <?php
-$myfile = fopen("text.txt", "r") or die("Unable to open file!");
-// echo fread($myfile,filesize("text.txt"));
-fclose($myfile);
+$username = $_POST['username'];
+$password = $_POST['password'];
 
+$user1 = 'sfhmmy';
+$pass1 = 'sfhmmy';
 
+$loginSuccess =  ($username == $user1) && ($password  == $pass1);
 
-
-
-
-$filename="text.txt";	
-
-// $size=filesize($filename);
-// echo $filename . ': ' . $size . ' bytes ';
-// sleep(1);
-
-
-
-
-
-
+if ($loginSuccess) {
+	include 'success.html';
+}
+else {
+	header("Location: index.html?error=1");
+}
 ?>
 
-</body>
-</html>
