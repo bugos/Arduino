@@ -84,9 +84,9 @@ void loop()
       sumMo[i] += value[i];
       Mo[i] = sumMo[i] / n;
       if flagMove == i + 1
-    {
-      int temp;
-      if MaxDiffer[i] < 0
+      {
+        int temp;
+        if MaxDiffer[i] < 0
           temp = 1;
         else
           temp = 0;
@@ -99,8 +99,8 @@ void loop()
     else
     {
       if flagMove == 0 || flagMove == 4
-    {
-      MaxDiffer[i] = value[i] - Mo[i];
+      {
+        MaxDiffer[i] = value[i] - Mo[i];
         flagMove = 4;
       }
     }
