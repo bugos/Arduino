@@ -1,2 +1,2 @@
 giorgos
-kwdikos
+password
