@@ -34,7 +34,6 @@ Adafruit_L3GD20 gyro(GYRO_CS, GYRO_DO, GYRO_DI, GYRO_CLK);
 #endif
 
 int x; int y; int z;
-
 int MoX = 4; int MoY = 6; int MoZ = 10;
 //Password and counter of the position in the password array
 int moves[120];
@@ -60,7 +59,6 @@ int MaxDiffer[3] = {0, 0, 0};
 void setup()
 {
   Serial.begin(9600);
-
   // Try to initialise and warn if we couldn't detect the chip
   if (!gyro.begin(gyro.L3DS20_RANGE_250DPS))
     //if (!gyro.begin(gyro.L3DS20_RANGE_500DPS))
@@ -69,11 +67,7 @@ void setup()
     Serial.println("Oops ... unable to initialize the L3GD20. Check your wiring!");
     while (1);
   }
-
-
 }
-
-
 
 void loop()
 {
@@ -92,15 +86,18 @@ void loop()
       Mo[i] = sumMo[i] / n;
       if flagMove == i + 1
       {
+<<<<<<< HEAD
         int temp
 
+=======
+        int temp;
+>>>>>>> origin/master
         if MaxDiffer[i] < 0
           temp = 1;
         else
           temp = 0;
-
         mm++;
-        moves[nm] = flagMove * 2 - tmp;
+        moves[nm] = flagMove * 2 - temp;
         flagMove = 0;
       }
     }
@@ -108,14 +105,12 @@ void loop()
     else
     {
       if flagMove == 0 || flagMove == 4
-    {
-      MaxDiffer[i] = value[i] - Mo[i];
+      {
+        MaxDiffer[i] = value[i] - Mo[i];
         flagMove = 4;
       }
     }
   }
-
-
   if (flagmove == 4)
   {
     maxim = MaxDiffer[0];
