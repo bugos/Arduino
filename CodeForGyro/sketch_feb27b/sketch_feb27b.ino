@@ -79,7 +79,6 @@ void loop()
   Serial.println(value[0]);
   for (int i = 0; i < 3; i++)
   {
-    
     //Regular mode
     if ((abs(value[i] - Mo[i])) <= tol[i])
     {
@@ -93,7 +92,6 @@ void loop()
           temp = 1;
         else
           temp = 0;
-          
         nm++;
         moves[nm] = flagMove * 2 - temp;
         flagMove = 0;
@@ -108,22 +106,21 @@ void loop()
   }
   if (flagMove == 4)
   {
-    
     for (int i = 0; i < 3; i++)
-        MaxDiffer[i] = value[i] - Mo[i];
-    
-    int maxim = MaxDiffer[0];
-    int point = 0;
-    for (int i = 1; i < 3; i++)
     {
-      if (MaxDiffer[i] > maxim)
+      MaxDiffer[i] = value[i] - Mo[i];
+      int maxim = MaxDiffer[0];
+      int point = 0;
+      for (int i = 1; i < 3; i++)
       {
-        maxim = MaxDiffer[i];
-        point = i;
+        if (MaxDiffer[i] > maxim)
+        {
+          maxim = MaxDiffer[i];
+          point = i;
+        }
       }
+      flagMove = point + 1;
     }
-    flagMove = point + 1;
-  }
   delay(120); //Digmatolipsia ton timon
 }
 
