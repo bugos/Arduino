@@ -76,7 +76,6 @@ void loop()
   value[1] = ((int)gyro.data.y);
   value[2] = ((int)gyro.data.z);
   //Deciding for each axis if we are in regular mode or in move read mode
-
   for (int i = 0; i < 3; i++)
   {
     //Regular mode
@@ -92,7 +91,6 @@ void loop()
           temp = 1;
         else
           temp = 0;
-
         nm++;
         moves[nm] = flagMove * 2 - temp;
         Serial.println(moves[nm]);
@@ -105,10 +103,8 @@ void loop()
       break;
     }
   }
-
   if (flagMove == 4)
   {
-
     for (int i = 0; i < 3; i++)
     {
       MaxDiffer[i] = value[i] - Mo[i];
