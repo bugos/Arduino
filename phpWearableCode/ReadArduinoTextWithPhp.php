@@ -4,21 +4,22 @@
 
 <?php
 $myfile = fopen("text.txt", "r") or die("Unable to open file!");
-echo fread($myfile,filesize("text.txt"));
+// echo fread($myfile,filesize("text.txt"));
 fclose($myfile);
+
+
+
 
 
 
 $filename="text.txt";	
 
+// $size=filesize($filename);
+// echo $filename . ': ' . $size . ' bytes ';
+// sleep(1);
 
 
-do {
-	$size=filesize($filename);
-    echo $filename . ': ' . $size . ' bytes';
 
-
-} while ($size==15);
 
 
 
