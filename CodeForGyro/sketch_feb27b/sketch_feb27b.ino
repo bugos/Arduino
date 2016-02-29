@@ -84,7 +84,7 @@ void loop()
       n++;
       sumMo[i] += value[i];
       Mo[i] = sumMo[i] / n;
-      if flagMove == i + 1
+      if flagMove == i + 1 // gia na stamatisi kai na grapsi tin kinisi 
       {
         int temp
         if MaxDiffer[i] < 0
@@ -98,15 +98,18 @@ void loop()
     }
     else//Read move mode
     {
-      if flagMove == 0 || flagMove == 4
-      {
-        MaxDiffer[i] = value[i] - Mo[i];
-        flagMove = 4;
-      }
+      flagMove=4;
+      break;
     }
   }
-  if (flagmove == 4)
+  if (flagMove == 4)
   {
+    
+    for (int i = 0; i < 3; i++)
+    {
+        MaxDiffer[i] = value[i] - Mo[i];
+    }
+    
     maxim = MaxDiffer[0];
     point = 0;
     for (int i = 1; i < 3; i++)
@@ -119,7 +122,7 @@ void loop()
     }
     flagMove = point + 1;
   }
-  delay(100);
+  delay(120); //Digmatolipsia ton timon
 }
 
 
