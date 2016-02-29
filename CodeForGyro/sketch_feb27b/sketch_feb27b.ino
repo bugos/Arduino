@@ -86,12 +86,7 @@ void loop()
       Mo[i] = sumMo[i] / n;
       if flagMove == i + 1
       {
-<<<<<<< HEAD
         int temp
-
-=======
-        int temp;
->>>>>>> origin/master
         if MaxDiffer[i] < 0
           temp = 1;
         else
@@ -101,8 +96,7 @@ void loop()
         flagMove = 0;
       }
     }
-    //Read move mode
-    else
+    else//Read move mode
     {
       if flagMove == 0 || flagMove == 4
       {
